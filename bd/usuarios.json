@@ -1,0 +1,38 @@
+{
+    "reali": {
+        "nome": "Alessandro Reali",
+        "cpf": "123.456.789-00",
+        "data_nascimento": "16/12/2002",
+        "email": "alessandro.reali@gmail.com",
+        "telefone": "(91) 94002-8922",
+        "usuario": "reali",
+        "senha": "Reali-705"
+    },
+    "virginia": {
+        "nome": "Alicem",
+        "cpf": "123.456.789-09",
+        "data_nascimento": "31/10/1500",
+        "email": "mariaalicevirginiasdau@yahoo.com",
+        "telefone": "(50) 93000-1399",
+        "usuario": "virginia",
+        "senha": "SouFilhaD3Rico*"
+    },
+    "holandageo": {
+        "nome": "Geovanaholanda",
+        "cpf": "123.456.678-90",
+        "data_nascimento": "01/09/2002",
+        "email": "holandageo@gmail.com",
+        "telefone": "(91) 91234-5645",
+        "usuario": "holandageo",
+        "senha": "12345678gG!"
+    },
+    "hugosv": {
+        "nome": "Hugosv",
+        "cpf": "549.521.644-84",
+        "data_nascimento": "09/04/2002",
+        "email": "hugssolace@gmail.com",
+        "telefone": "(91) 96473-9349",
+        "usuario": "hugosv",
+        "senha": "Al3g0st0sa1:)"
+    }
+}

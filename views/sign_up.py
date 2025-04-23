@@ -1,0 +1,251 @@
+import flet as ft
+from componentes import referencias as ref
+from componentes import functions_sign_up as fun
+
+# TODO - melhorar o designer
+# TODO - revisar tela
+
+def view(page: ft.Page) -> ft.View: 
+    return ft.View(
+        route="/cadastro",
+        padding=100,
+        appbar=ft.AppBar(
+            title=ft.Text("Criação de Usuário"),
+            center_title=True,
+            color=ft.Colors.BLUE,
+            bgcolor=ft.Colors.WHITE,
+            leading=ft.IconButton(
+                icon=ft.Icons.ARROW_BACK,
+                icon_color=ft.Colors.BLACK,
+                on_click=lambda _: page.go("/menu"),
+            ),
+        ),
+        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+        vertical_alignment=ft.MainAxisAlignment.CENTER,
+        controls=[
+            # Container para adicionar os dados do usuário
+            ft.Container(
+                content=ft.Column(
+                    controls=[
+                        ft.TextField(
+                            label="Nome",
+                            expand=True,
+                            autofocus=True,
+                            ref=ref.textfield_sign_up1["nome"],
+                            on_change=fun.ativar_botao,
+                            on_submit=fun.textfield_proximo,
+                            on_focus=fun.focar,
+                            on_blur=fun.desfocar,
+                        ),
+                        ft.TextField(
+                            label="CPF",
+                            hint_text="000.000.000-00",
+                            max_length=14,
+                            expand=True,
+                            ref=ref.textfield_sign_up1["cpf"],
+                            on_change=fun.formatar_cpf,
+                            on_submit=fun.textfield_proximo,
+                            on_focus=fun.focar,
+                            on_blur=fun.desfocar,
+                        ),
+                        ft.TextField(
+                            label="Data de nascimento",
+                            hint_text="dd/mm/aaaa",
+                            max_length=10,
+                            expand=True,
+                            ref=ref.textfield_sign_up1["data_nascimento"],
+                            on_change=fun.formatar_data_nascimento,
+                            on_submit=fun.textfield_proximo,
+                            on_focus=fun.focar,
+                            on_blur=fun.desfocar,
+                        ),
+                        ft.Row(
+                            controls=[
+                                ft.TextField(
+                                    label="E-mail",
+                                    expand=True,
+                                    ref=ref.textfield_sign_up1["email"],
+                                    on_change=fun.ativar_botao,
+                                    on_submit=fun.textfield_proximo,
+                                    on_focus=fun.focar,
+                                    on_blur=fun.desfocar,
+                                ),
+                                ft.Dropdown(
+                                    options=[
+                                        ft.dropdown.Option("@gmail.com"),
+                                        ft.dropdown.Option("@hotmail.com"),
+                                        ft.dropdown.Option("@outlook.com"),
+                                        ft.dropdown.Option("@yahoo.com")
+                                    ],
+                                    label="Domínio",
+                                    value="@gmail.com",
+                                    width=150,
+                                    ref=ref.dropdown["dominio"]
+                                ),
+                            ],
+                            expand=True,
+                        ),
+                        ft.TextField(
+                            label="Telefone",
+                            hint_text="(00) 90000-0000",
+                            max_length=15,
+                            expand=True,
+                            ref=ref.textfield_sign_up1["telefone"],
+                            on_change=fun.formatar_telefone,
+                            on_submit=fun.textfield_proximo,
+                            on_focus=fun.focar,
+                            on_blur=fun.desfocar,
+                        ),
+                        ft.Row(
+                            expand=True,
+                            controls=[
+                                ft.ElevatedButton(
+                                    "Cancelar",
+                                    on_click=lambda _: page.go("/menu")
+                                ),
+                                ft.ElevatedButton(
+                                    "Continuar",
+                                    disabled=True,
+                                    ref=ref.button["dados_usuario"],
+                                    on_click=fun.validar_informacoes,
+                                ),
+                            ],
+                            alignment=ft.MainAxisAlignment.SPACE_EVENLY,
+                        ),
+                    ],
+                    ref=ref.column["dados_usuario"],
+                    expand=True,
+                    scroll=ft.ScrollMode.AUTO,
+                ),
+                width=500,
+                alignment=ft.alignment.center,
+                padding=10,
+                bgcolor=ft.Colors.WHITE,
+                border_radius=10,
+                border=ft.border.all(2, ft.Colors.BLUE),
+                ref=ref.container["dados_usuario"],
+            ),
+            # Container para criar usuário
+            ft.Container(
+                content=ft.Column(
+                    controls=[
+                        ft.TextField(
+                            label="Usuário",
+                            expand=True,
+                            autofocus=True,
+                            ref=ref.textfield_sign_up2["usuario"],
+                            on_change=fun.ativar_botao,
+                            on_submit=fun.textfield_proximo,
+                            on_focus=fun.focar,
+                            on_blur=fun.desfocar,
+                        ),
+                        ft.TextField(
+                            label="Senha",
+                            password=True,
+                            can_reveal_password=True,
+                            expand=True,
+                            ref=ref.textfield_sign_up2["senha"],
+                            on_change=fun.confirmar_requisitos_senha,
+                            on_submit=fun.textfield_proximo,
+                            on_focus=fun.focar,
+                            on_blur=fun.desfocar,
+                        ),
+                        ft.TextField(
+                            label="Confirmar senha",
+                            password=True,
+                            can_reveal_password=True,
+                            expand=True,
+                            ref=ref.textfield_sign_up2["confirmar_senha"],
+                            on_change=fun.ativar_botao,
+                            on_submit=fun.textfield_proximo,
+                            on_focus=fun.focar,
+                            on_blur=fun.desfocar,
+                        ),
+                        ft.Row(
+                            controls=[
+                                ft.Icon(
+                                    name=ft.Icons.CLOSE,
+                                    ref=ref.icone_senha["minimo"],
+                                    color=ft.Colors.RED_400,
+                                    size=20,
+                                ),
+                                ft.Text(
+                                    value="• Mínimo de 6 caracteres;",
+                                ),
+                            ],
+                        ),
+                        ft.Row(
+                            controls=[
+                                ft.Icon(
+                                    name=ft.Icons.CLOSE,
+                                    ref=ref.icone_senha["letras"],
+                                    color=ft.Colors.RED_400,
+                                    size=20,
+                                ),
+                                ft.Text(
+                                    value="• Letras maiúsculas e minusculas;",
+                                ),
+                            ],
+                        ),
+                        ft.Row(
+                            controls=[
+                                ft.Icon(
+                                    name=ft.Icons.CLOSE,
+                                    ref=ref.icone_senha["numeros"],
+                                    color=ft.Colors.RED_400,
+                                    size=20,
+                                ),
+                                ft.Text(
+                                   value="• Números e letras;",
+                                ),
+                            ],
+                        ),
+                        ft.Row(
+                            controls=[
+                                ft.Icon(
+                                    name=ft.Icons.CLOSE,
+                                    ref=ref.icone_senha["especial"],
+                                    color=ft.Colors.RED_400,
+                                    size=20,
+                                ),
+                                ft.Text(
+                                    value="• Caracteres especiais;",
+                                ),
+                            ],
+                        ),
+                        ft.Row(
+                            expand=True,
+                            controls=[
+                                ft.ElevatedButton(
+                                    "Voltar",
+                                    on_click=fun.trocar_campo,
+                                ),
+                                ft.ElevatedButton(
+                                    "Cancelar",
+                                    on_click=lambda _: page.go("/menu")
+                                ),
+                                ft.ElevatedButton(
+                                    "Criar",
+                                    disabled=True,
+                                    ref=ref.button["criar_usuario"],
+                                    on_click=fun.criar_usuario,
+                                ),
+                            ],
+                            alignment=ft.MainAxisAlignment.SPACE_EVENLY,
+                        ),
+                    ],
+                    ref=ref.column["criar_usuario"],
+                    expand=True,
+                    scroll=ft.ScrollMode.AUTO,
+                ),
+                width=500,
+                alignment=ft.alignment.center,
+                padding=10,
+                bgcolor=ft.Colors.WHITE,
+                border_radius=10,
+                border=ft.border.all(2, ft.Colors.BLUE),
+                ref=ref.container["criar_usuario"],
+                visible=False,
+            )
+        ],
+    )
