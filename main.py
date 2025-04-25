@@ -1,14 +1,16 @@
 import flet as ft
 from views import erro, home, user, sign_up, user_details
-from componentes import referencias, functions_sign_up, functions_home, funcions_detals_user
+from componentes import referencias, functions_sign_up, functions_home, funcions_detals_user, classes
 from bd import banco_de_dados as bd
 import importlib
 
+# TODO - criar as classes de usuario e de contas
+# TODO - alterar estrutura lógica para comportar as classes
+# TODO - terminar banco de dados
 # TODO - criar tela de detalhes de usuario
 # TODO - melhorar tela de erro 404
 # TODO - melhorar tela de usuario
 # TODO - melhorar tela de detalhes de usuario
-# TODO - terminar banco de dados
 # TODO - revisar tela de menu
 # TODO - revisar tela de sing up
 # TODO - revisar tela de usuario
@@ -27,6 +29,7 @@ def main(page: ft.Page):
         importlib.reload(functions_sign_up)
         importlib.reload(functions_home)
         importlib.reload(funcions_detals_user)
+        importlib.reload(classes)
         importlib.reload(bd)
 
         page.views.clear()
